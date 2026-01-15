@@ -1,0 +1,9 @@
+<library path="alanbot_firmware">
+    <class name="alanbot_firmware/AlanbotInterface"
+           type="alanbot_firmware::AlanbotInterface"
+           base_class_type="hardware_interface::SystemInterface">
+        <description>
+            Alanbot hardware interface
+        </description>
+    </class>
+</library>
