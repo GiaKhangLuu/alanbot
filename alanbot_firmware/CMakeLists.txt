@@ -16,6 +16,8 @@ find_package(rclcpp_lifecycle REQUIRED)
 
 pkg_check_modules(SERIAL libserial)
 
+ament_python_install_package(${PROJECT_NAME})
+
 add_library(${PROJECT_NAME} SHARED
     src/alanbot_interface.cpp
 )
@@ -65,6 +67,11 @@ install(
 install(
     DIRECTORY launch
     DESTINATION share/${PROJECT_NAME}
+)
+
+install(PROGRAMS
+    ${PROJECT_NAME}/mpu6050_driver.py
+    DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
