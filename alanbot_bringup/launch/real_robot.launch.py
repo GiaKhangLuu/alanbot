@@ -30,14 +30,8 @@ def generate_launch_description():
         )
     )
 
-    imu_driver_node = Node(
-        package="alanbot_firmware",
-        executable="mpu6050_driver.py"
-    )
-
     return LaunchDescription([
         hardware_interface,
         controller,
-        joystick,
-        imu_driver_node
+        joystick
     ])

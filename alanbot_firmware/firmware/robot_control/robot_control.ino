@@ -3,16 +3,16 @@
 // L298N H-Bridge Connection PINs
 #define L298N_enA 9  // PWM
 #define L298N_enB 11  // PWM
-#define L298N_in4 13  // Dir Motor B
-#define L298N_in3 12  // Dir Motor B
-#define L298N_in2 8  // Dir Motor A
-#define L298N_in1 7  // Dir Motor A
+#define L298N_in4 8  // Dir Motor B
+#define L298N_in3 7  // Dir Motor B
+#define L298N_in2 13  // Dir Motor A
+#define L298N_in1 12  // Dir Motor A
 
 // Wheel Encoders Connection PINs
-#define right_encoder_phaseA 2  // Interrupt 
-#define right_encoder_phaseB 4  
-#define left_encoder_phaseA 3   // Interrupt
-#define left_encoder_phaseB 5
+#define right_encoder_phaseA 3  // Interrupt 
+#define right_encoder_phaseB 5  
+#define left_encoder_phaseA 2   // Interrupt
+#define left_encoder_phaseB 4
 
 // Encoders
 unsigned int right_encoder_counter = 0;
@@ -105,15 +105,15 @@ void loop() {
       if(is_right_wheel_cmd && !is_right_wheel_forward)
       {
         // change the direction of the rotation
-        digitalWrite(L298N_in1, HIGH - digitalRead(L298N_in1));
-        digitalWrite(L298N_in2, HIGH - digitalRead(L298N_in2));
+        digitalWrite(L298N_in3, HIGH - digitalRead(L298N_in3));
+        digitalWrite(L298N_in4, HIGH - digitalRead(L298N_in4));
         is_right_wheel_forward = true;
       }
       else if(is_left_wheel_cmd && !is_left_wheel_forward)
       {
         // change the direction of the rotation
-        digitalWrite(L298N_in3, HIGH - digitalRead(L298N_in3));
-        digitalWrite(L298N_in4, HIGH - digitalRead(L298N_in4));
+        digitalWrite(L298N_in1, HIGH - digitalRead(L298N_in1));
+        digitalWrite(L298N_in2, HIGH - digitalRead(L298N_in2));
         is_left_wheel_forward = true;
       }
     }
@@ -123,15 +123,15 @@ void loop() {
       if(is_right_wheel_cmd && is_right_wheel_forward)
       {
         // change the direction of the rotation
-        digitalWrite(L298N_in1, HIGH - digitalRead(L298N_in1));
-        digitalWrite(L298N_in2, HIGH - digitalRead(L298N_in2));
+        digitalWrite(L298N_in3, HIGH - digitalRead(L298N_in3));
+        digitalWrite(L298N_in4, HIGH - digitalRead(L298N_in4));
         is_right_wheel_forward = false;
       }
       else if(is_left_wheel_cmd && is_left_wheel_forward)
       {
         // change the direction of the rotation
-        digitalWrite(L298N_in3, HIGH - digitalRead(L298N_in3));
-        digitalWrite(L298N_in4, HIGH - digitalRead(L298N_in4));
+        digitalWrite(L298N_in1, HIGH - digitalRead(L298N_in1));
+        digitalWrite(L298N_in2, HIGH - digitalRead(L298N_in2));
         is_left_wheel_forward = false;
       }
     }
@@ -193,8 +193,8 @@ void loop() {
     right_encoder_counter = 0;
     left_encoder_counter = 0;
 
-    analogWrite(L298N_enA, right_wheel_cmd);
-    analogWrite(L298N_enB, left_wheel_cmd);
+    analogWrite(L298N_enA, left_wheel_cmd);
+    analogWrite(L298N_enB, right_wheel_cmd);
   }
 }
 
