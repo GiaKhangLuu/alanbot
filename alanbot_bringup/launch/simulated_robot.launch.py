@@ -69,6 +69,19 @@ def generate_launch_description():
         condition=UnlessCondition(use_slam)
     )
 
+    rviz_slam = Node(
+        package="rviz2",
+        executable="rviz2",
+        arguments=["-d", os.path.join(
+            get_package_share_directory("alanbot_mapping"),
+            "rviz",
+            "slam.rviz"
+        )],
+        output="screen",
+        parameters=[{"use_sim_time": True}],
+        condition=IfCondition(use_slam)
+    )
+
     return LaunchDescription([
         use_slam_arg,
         gazebo,
@@ -76,5 +89,6 @@ def generate_launch_description():
         joystick,
         localization,
         slam,
-        rviz_localization
+        rviz_localization,
+        rviz_slam
     ])

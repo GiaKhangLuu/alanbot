@@ -64,23 +64,10 @@ def generate_launch_description():
         ]
     )
 
-    rviz_slam = Node(
-        package="rviz2",
-        executable="rviz2",
-        arguments=["-d", os.path.join(
-            get_package_share_directory("alanbot_mapping"),
-            "rviz",
-            "slam.rviz"
-        )],
-        output="screen",
-        parameters=[{"use_sim_time": use_sim_time}]
-    )
-
     return LaunchDescription([
         use_sim_time_arg,
         slam_config_arg,
         slam_toolbox,
         nav2_map_saver,
         nav2_lifecycle_manager,
-        rviz_slam
     ])
