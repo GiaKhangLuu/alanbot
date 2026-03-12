@@ -22,7 +22,7 @@
         <xacro:unless value="$(arg is_sim)">
             <hardware>
                 <plugin>alanbot_firmware/AlanbotInterface</plugin>
-                <param name="port">/dev/ttyUSB0</param>
+                <param name="port">/dev/arduino</param>
             </hardware>
         </xacro:unless>
 
